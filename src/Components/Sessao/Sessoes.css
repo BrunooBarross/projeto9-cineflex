@@ -14,10 +14,13 @@
 }
 .sessao-data{
     margin-left: 24px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+    color: #293845;
 }
 .container-botoes{
     display: flex;
-    width: 100%;
     margin-left: 14px;
     margin-top: 22px;
     margin-bottom: 23px;
@@ -32,8 +35,6 @@
 
     margin-left: 9px;
 
-    font-family: 'Roboto';
-    font-style: normal;
     font-weight: 400;
     font-size: 18px;
     line-height: 21px;
