@@ -1,0 +1,130 @@
+.pagina-assentos{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.assentos-titulo{
+    width: 100%;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 0.04em;
+
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;
+    color: #293845;
+}
+.assentos-container{
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+.assentos{
+    margin-left: 7px;
+    width: 26px;
+    height: 26px;
+    margin-top: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    border-radius: 12px;
+    cursor: pointer;
+}
+.livre{
+    background: #C3CFD9;
+}
+
+.reservado{
+    background-color:#FBE192;
+}
+.selecionado{
+    background: #8DD7CF;
+}
+.legenda{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    margin-top: 24px;
+}
+.legenda p{
+    margin-top: 10px;
+}
+.legenda-selecionado{
+    width: 25px;
+    height: 25px;
+    background: #8DD7CF;
+    border: 1px solid #1AAE9E;
+    box-sizing: border-box;
+    border-radius: 17px;
+}
+.legenda-livre{
+    width: 25px;
+    height: 25px;
+    background: #C3CFD9;
+    border: 1px solid #7B8B99;
+    box-sizing: border-box;
+    border-radius: 17px;
+}
+.legenda-reservado{
+    width: 25px;
+    height: 25px;
+    background: #FBE192;
+    border: 1px solid #F7C52B;
+    box-sizing: border-box;
+    border-radius: 17px;
+}
+.legenda div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.input{
+    display: flex;
+    flex-direction: column;
+    margin-top: 42px;
+}
+.input span{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    margin-top: 7px;
+}
+.input input{
+    margin-top: 4px;
+    background: #FFFFFF;
+    border: 1px solid #D5D5D5;
+    box-sizing: border-box;
+    border-radius: 3px;
+    width: 327px;
+    height: 51px;
+}
+.botao{
+    width: 225px;
+    height: 42px;
+    margin-top: 57px;
+    margin-bottom: 30px;
+
+    background: #E8833A;
+    border-radius: 3px;
+    border: none;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: center;
+    letter-spacing: 0.04em;
+
+    color: #FFFFFF;
+}
+
+
+

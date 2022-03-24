@@ -1,4 +1,7 @@
-const SessaoDia = ({ weekday, date, showtimes }) => {
+import { Link } from "react-router-dom";
+
+const SessaoDia = (props) => {
+    const { weekday, date, showtimes } = props;
     return (
         <>
             <div className="sessao-data">
@@ -6,10 +9,12 @@ const SessaoDia = ({ weekday, date, showtimes }) => {
             </div>
             <div className="container-botoes" >
                 {
-                    showtimes.map((showtime, key) =>                        
+                    showtimes.map((showtime, key) =>
+                    <Link className="Link" key={key} to={`/sessao/${showtime.id}`}>
                         <button className="botoes-hora" key={key}>
                             {showtime.name}
-                        </button>                        
+                        </button>
+                    </Link>                                            
                     )
                 }
             </div>            

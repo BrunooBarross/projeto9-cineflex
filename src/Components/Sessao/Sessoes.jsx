@@ -1,4 +1,5 @@
 import SessaoDia from './SessaoDia';
+import Footer from '../Footer/Footer';
 
 import axios from 'axios';
 import { useState, useEffect } from 'react';
@@ -15,9 +16,17 @@ const Sessoes = () =>{
     useEffect(() => {
 		const requisicao = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/movies/${idFilme}/showtimes`);
 		requisicao.then(resposta => {
-			setSessoes(resposta.data.days);
+			setSessoes(resposta.data);
 		});
-	}, []);
+	}, [idFilme]);
+
+    if (sessoes.length === 0) {
+        return(
+            <div className="sessoes-titulo">
+                <h1>Selecione o horário</h1>
+         </div>
+        );        
+    }
 
     return(
         <>
@@ -25,7 +34,7 @@ const Sessoes = () =>{
                 <h1>Selecione o horário</h1>
             </div>   
             {
-                sessoes.map((dia, key) =>
+                sessoes.days.map((dia, key) =>
                     <SessaoDia key={key}
                         id={dia.id}
                         weekday={dia.weekday}
@@ -34,6 +43,8 @@ const Sessoes = () =>{
                     />
                 )
             }
+           
+            <Footer posterURL={sessoes.posterURL} title={sessoes.title} day={null} />
         </>
     );
 }
