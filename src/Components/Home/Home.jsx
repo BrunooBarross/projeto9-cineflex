@@ -1,6 +1,9 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import { Link } from "react-router-dom";
+
 import "./Home.css"
+
 const Home = () =>{
 
     const [filmes, setFilmes] = useState([]);
@@ -18,10 +21,13 @@ const Home = () =>{
                 <h2>Selecione o filme</h2>
             </div>
             <section className='container-filme'>
-                {filmes.map(filme =>             
-                    <div className='home-filme' key={filme.id}>                    
-                        <img className='home-filme-img' src={filme.posterURL} alt={filme.title} />
-                    </div>
+                {filmes.map(filme =>  
+                    <Link to= {`/filme/${filme.id}`} key={filme.id}>
+                        <div className='home-filme' >                    
+                            <img className='home-filme-img' src={filme.posterURL} alt={filme.title} />
+                        </div>
+                    </Link>           
+                    
                 )}
             </section>        
         </>

@@ -2,9 +2,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    width: 100vw;
     height: 67px;
-    background: #C3CFD9;    
+    background: #C3CFD9; 
+    position: sticky;
+    top: 0;   
 }
 .header h1{
     font-weight: 400;
