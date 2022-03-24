@@ -13,3 +13,29 @@
     letter-spacing: 0.04em;
     color: #293845;
 }
+
+.container-filme{
+    width: 100%;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-between;
+}
+
+.home-filme{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 145px;
+    height: 209px;
+    margin-left: 30px;
+    margin-right: 20px;
+    margin-bottom: 11px;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+}
+.home-filme-img{
+    width: 129px;
+    height: 193px;
+
+}
