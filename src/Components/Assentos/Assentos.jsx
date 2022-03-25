@@ -1,4 +1,5 @@
 import Footer from '../Footer/Footer';
+import Assento from './Assento';
 
 import axios from "axios";
 import { useParams } from "react-router-dom";
@@ -31,20 +32,14 @@ const Assentos = () =>{
                 <h1>Selecione o(s) assento(s)</h1>
             </div>
             <section className="assentos-container">
-                {
-                    assentos.seats.map((assento, key) =>{
-                        if (assento.isAvailable) {
-                            return(
-                                <div key={key} className="assentos livre">{assento.name}</div>
-                            );                             
-                        }  
-                        if (!assento.isAvailable) {
-                            return(
-                                <div key={key} className="assentos reservado">{assento.name}</div>
-                            );                             
-                        }                         
-                    })
-                }      
+                {assentos.seats.map((assento,key) =>
+                    <Assento  
+                            key={key}
+                            id={assento.id}
+                            disponivel={assento.isAvailable} 
+                            posicao = {assento.name}
+                    />
+                )}
             </section>
             <section className='legenda'>
                 <div>
@@ -74,7 +69,6 @@ const Assentos = () =>{
                 time={assentos.name}
             />
         </div>
-    );      
+    );
 }
-
 export default Assentos;
