@@ -10,6 +10,7 @@ import "./style.css"
 const Assentos = () =>{
     const {idSessao} = useParams();
     const [assentos, setAssentos] = useState([]);
+    let [ids, setIds] = useState([]);
 
     useEffect(()=>{
         const requisicao = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${idSessao}/seats`);
@@ -25,6 +26,8 @@ const Assentos = () =>{
             </div>
         );        
     }
+
+    console.log(ids)
     
     return(
         <div className='pagina-assentos'>
@@ -35,6 +38,8 @@ const Assentos = () =>{
                 {assentos.seats.map((assento,key) =>
                     <Assento  
                             key={key}
+                            setIds = {setIds}
+                            ids = {ids}
                             id={assento.id}
                             disponivel={assento.isAvailable} 
                             posicao = {assento.name}

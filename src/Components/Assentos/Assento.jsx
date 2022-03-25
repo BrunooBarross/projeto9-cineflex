@@ -2,28 +2,25 @@ import { useState } from "react";
 
 export default function Assento(props){
 
-    let [cor, setCor] = useState('livre');
-    let [ids, setIds] = useState(['teste','teste']);
+    let [cor, setCor] = useState('livre');   
 
     function tratarEscolha(disponivel, id){ 
         if(!disponivel){
-            alert('Esse assento não está disponível')
-            return console.log('não disponível')
+            return alert('Esse assento não está disponível')
         }  
 
-        if(cor === 'selecionado'){
-            alert('Você desfez a seleção')
+        if(cor === 'selecionado'){            
             setCor('livre');
-            return console.log('desfez seleçao');
+            const novosIds = props.ids.filter(item => item !== id);
+            props.setIds([...novosIds]);
+            return alert('Você desfez a seleção')
         }
 
         setCor('selecionado');
-        const novosIds = [...ids, id];
-        setIds([...novosIds]);
+        const novosIds = [...props.ids, id];
+        props.setIds([...novosIds]);
     }
 
-    console.log(ids);
-    
     if (!props.disponivel) {
         return(
             <div className="assentos reservado" 
