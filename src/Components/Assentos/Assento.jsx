@@ -4,16 +4,19 @@ export default function Assento(props){
 
     let [cor, setCor] = useState('livre');   
 
-    function tratarEscolha(disponivel, id){ 
+    function tratarEscolha(disponivel, id, posicao){ 
         if(!disponivel){
             return alert('Esse assento não está disponível')
         }  
 
-        if(cor === 'selecionado'){            
-            setCor('livre');
-            const novosIds = props.ids.filter(item => item !== id);
-            props.setIds([...novosIds]);
-            return alert('Você desfez a seleção')
+        if(cor === 'selecionado'){ 
+            let dialog = window.confirm("Desfazer a seleção do assento: " + posicao);
+            if(dialog){
+                setCor('livre');
+                const novosIds = props.ids.filter(item => item !== id);
+                props.setIds([...novosIds]);
+            }      
+            return console.log(dialog)
         }
 
         setCor('selecionado');
@@ -32,7 +35,7 @@ export default function Assento(props){
     
     return(
         <div className={"assentos " + cor}
-            onClick={()=>tratarEscolha(props.disponivel, props.id)}>
+            onClick={()=>tratarEscolha(props.disponivel, props.id, props.posicao)}>
             {props.posicao}
         </div>
     );                              

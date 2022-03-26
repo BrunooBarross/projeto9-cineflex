@@ -60,12 +60,15 @@ const Assentos = () =>{
                     <p>Reservado</p>
                 </div>               
             </section>
-            <div className='input'>
-                <span>Nome do comprador:</span>
-                <input type="text" name="" placeholder='Digite seu nome' />
-                <span>CPF do comprador:</span>
-                <input type="text" name="" placeholder='Digite seu nome' />
-            </div>
+            <form action="">
+                <div className='input'>
+                    <span>Nome do comprador:</span>
+                    <input   type="text" name="name" placeholder='Digite seu nome' />
+                    <span>CPF do comprador:</span>
+                    <input maxLength='14'  minLength='11' type="number"name="" placeholder='Digite seu cpf' />
+                </div>
+            </form>
+            
             <button className='botao'>Reservar assento(s)</button>
             <Footer
                 posterURL={assentos.movie.posterURL}
