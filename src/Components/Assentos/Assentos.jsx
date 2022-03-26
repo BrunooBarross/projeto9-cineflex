@@ -4,85 +4,88 @@ import Assento from './Assento';
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 import "./style.css"
 
-const Assentos = () =>{
-    const {idSessao} = useParams();
+const Assentos = ({ setSucesso }) => {
+    const { idSessao } = useParams();
     const [assentos, setAssentos] = useState([]);
-    const [ids, setIds] = useState([]);
+    const [ids, setIds] = useState({ identificador: [], numeracao: [] });
     const [nomeComprador, setNomeComprador] = useState("");
     const [cpfComprador, setCpfComprador] = useState("");
-    console.log(cpfComprador);
 
-    function reservarAssento (event) {
-		event.preventDefault(); // impede o redirecionamento
+    const navigate = useNavigate();
 
-		const requisicaoPost = axios.post("https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many", {
-            ids: ids,
+    function reservarAssento(event) {
+        event.preventDefault(); // impede o redirecionamento
+
+        const requisicaoPost = axios.post("https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many", {
+            ids: ids.identificador,
             name: nomeComprador,
             cpf: cpfComprador
-		}); requisicaoPost.catch(resposta => {
-            console.log("deu ruim");
         });
+        requisicaoPost.then(resposta => {
+            setSucesso({ assentos: ids.numeracao, nome: nomeComprador, cpf: cpfComprador });
+            navigate("/sucesso");
+        });
+        requisicaoPost.catch(resposta => { console.log("deu ruim"); });
+    }
 
-		// ...
-	}
-
-    useEffect(()=>{
+    useEffect(() => {
         const requisicao = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${idSessao}/seats`);
         requisicao.then(resposta => {
             setAssentos(resposta.data);
         });
-    },[idSessao]);
+    }, [idSessao]);
 
     if (assentos.length === 0) {
-        return(
+        return (
             <div>
                 <h1>Selecione o(s) assento(s)</h1>
             </div>
-        );        
+        );
     }
 
-    return(
+    return (
         <div className='pagina-assentos'>
             <div className="assentos-titulo">
                 <h1>Selecione o(s) assento(s)</h1>
             </div>
             <section className="assentos-container">
-                {assentos.seats.map((assento,key) =>
-                    <Assento  
-                            key={key}
-                            setIds = {setIds}
-                            ids = {ids}
-                            id={assento.id}
-                            disponivel={assento.isAvailable} 
-                            posicao = {assento.name}
+                {assentos.seats.map((assento, key) =>
+                    <Assento
+                        key={key}
+                        id={assento.id}
+                        disponivel={assento.isAvailable}
+                        posicao={assento.name}
+                        ids={ids}
+                        setIds={setIds}
                     />
                 )}
             </section>
             <section className='legenda'>
                 <div>
-                    <div className='legenda-selecionado'></div> 
+                    <div className='legenda-selecionado'></div>
                     <p>Selecionado</p>
-                </div>   
+                </div>
                 <div>
-                    <div className='legenda-livre'></div> 
+                    <div className='legenda-livre'></div>
                     <p>Disponível</p>
-                </div>   
+                </div>
                 <div>
-                    <div className='legenda-reservado'></div> 
+                    <div className='legenda-reservado'></div>
                     <p>Reservado</p>
-                </div>               
+                </div>
             </section>
             <form onSubmit={reservarAssento}>
                 <div className='input'>
                     <span>Nome do Comprador:</span>
-                    <input   type="text" name="name" placeholder='Digite seu nome' 
-                        onChange={e => setNomeComprador(e.target.value)}/>
+                    <input type="text" name="name" placeholder='Digite seu nome'
+                        onChange={e => setNomeComprador(e.target.value)} />
                     <span>CPF do Comprador:</span>
-                    <input maxLength='14' name="" placeholder='Digite seu cpf'
-                     onChange={e => setCpfComprador(e.target.value)}/>
+                    <input maxLength='14' minLength='11' name="" placeholder='Digite seu cpf'
+                        onChange={e => setCpfComprador(e.target.value)} />
                 </div>
                 <button type="submit" className='botao'>Reservar assento(s)</button>
             </form>

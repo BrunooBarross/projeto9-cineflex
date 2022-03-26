@@ -1,43 +1,46 @@
 import { useState } from "react";
 
-export default function Assento(props){
+export default function Assento(props) {
 
-    let [cor, setCor] = useState('livre');   
+    let [cor, setCor] = useState('livre');
 
-    function tratarEscolha(disponivel, id, posicao){ 
-        if(!disponivel){
+    function tratarEscolha(disponivel, id, posicao) {
+        if (!disponivel) {
             return alert('Esse assento não está disponível')
-        }  
+        }
 
-        if(cor === 'selecionado'){ 
+        if (cor === 'selecionado') {
             let dialog = window.confirm("Desfazer a seleção do assento: " + posicao);
-            if(dialog){
+            if (dialog) {
                 setCor('livre');
-                const novosIds = props.ids.filter(item => item !== id);
-                props.setIds([...novosIds]);
-            }      
-            return console.log(dialog)
+                const novosIds = props.ids.identificador.filter(item => item !== id);
+                const numeracaoAssentos = props.ids.numeracao.filter(item => item !== posicao);
+                props.setIds({ identificador: [...novosIds], numeracao: [...numeracaoAssentos] });
+            }
+            return "";
         }
 
         setCor('selecionado');
-        const novosIds = [...props.ids, id];
-        props.setIds([...novosIds]);
+        const novosIds = [...props.ids.identificador, id];
+        const numeracaoAssentos = [...props.ids.numeracao, posicao]
+        props.setIds({ identificador: [...novosIds], numeracao: [...numeracaoAssentos] });
+
     }
 
     if (!props.disponivel) {
-        return(
-            <div className="assentos reservado" 
-                onClick={()=>tratarEscolha(props.disponivel)}>
+        return (
+            <div className="assentos reservado"
+                onClick={() => tratarEscolha(props.disponivel)}>
                 {props.posicao}
             </div>
-        );                             
-    } 
-    
-    return(
+        );
+    }
+
+    return (
         <div className={"assentos " + cor}
-            onClick={()=>tratarEscolha(props.disponivel, props.id, props.posicao)}>
+            onClick={() => tratarEscolha(props.disponivel, props.id, props.posicao)}>
             {props.posicao}
         </div>
-    );                              
-            
+    );
+
 }
