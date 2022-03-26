@@ -10,7 +10,24 @@ import "./style.css"
 const Assentos = () =>{
     const {idSessao} = useParams();
     const [assentos, setAssentos] = useState([]);
-    let [ids, setIds] = useState([]);
+    const [ids, setIds] = useState([]);
+    const [nomeComprador, setNomeComprador] = useState("");
+    const [cpfComprador, setCpfComprador] = useState("");
+    console.log(cpfComprador);
+
+    function reservarAssento (event) {
+		event.preventDefault(); // impede o redirecionamento
+
+		const requisicaoPost = axios.post("https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many", {
+            ids: ids,
+            name: nomeComprador,
+            cpf: cpfComprador
+		}); requisicaoPost.catch(resposta => {
+            console.log("deu ruim");
+        });
+
+		// ...
+	}
 
     useEffect(()=>{
         const requisicao = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${idSessao}/seats`);
@@ -27,8 +44,6 @@ const Assentos = () =>{
         );        
     }
 
-    console.log(ids)
-    
     return(
         <div className='pagina-assentos'>
             <div className="assentos-titulo">
@@ -60,16 +75,18 @@ const Assentos = () =>{
                     <p>Reservado</p>
                 </div>               
             </section>
-            <form action="">
+            <form onSubmit={reservarAssento}>
                 <div className='input'>
-                    <span>Nome do comprador:</span>
-                    <input   type="text" name="name" placeholder='Digite seu nome' />
-                    <span>CPF do comprador:</span>
-                    <input maxLength='14'  minLength='11' type="number"name="" placeholder='Digite seu cpf' />
+                    <span>Nome do Comprador:</span>
+                    <input   type="text" name="name" placeholder='Digite seu nome' 
+                        onChange={e => setNomeComprador(e.target.value)}/>
+                    <span>CPF do Comprador:</span>
+                    <input maxLength='14' name="" placeholder='Digite seu cpf'
+                     onChange={e => setCpfComprador(e.target.value)}/>
                 </div>
+                <button type="submit" className='botao'>Reservar assento(s)</button>
             </form>
-            
-            <button className='botao'>Reservar assento(s)</button>
+
             <Footer
                 posterURL={assentos.movie.posterURL}
                 title={assentos.movie.title}
