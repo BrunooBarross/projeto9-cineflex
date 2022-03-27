@@ -6,7 +6,7 @@ export default function Assento(props) {
 
     function tratarEscolha(disponivel, id, posicao) {
         if (!disponivel) {
-            return alert('Esse assento não está disponível')
+            return alert('O assento '+posicao+" não esta disponível")
         }
 
         if (cor === 'selecionado') {
@@ -30,7 +30,7 @@ export default function Assento(props) {
     if (!props.disponivel) {
         return (
             <div className="assentos reservado"
-                onClick={() => tratarEscolha(props.disponivel)}>
+                onClick={() => tratarEscolha(props.disponivel,'',props.posicao)}>
                 {props.posicao}
             </div>
         );
