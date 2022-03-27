@@ -3,7 +3,8 @@ import "./Header.css"
 const Header = () =>{
     return(
         <header className="header">
-            <h1>Cineflex</h1>
+            <img src="/imagens/logo.png" alt="testes" />
+            <h1>ineflex</h1>
         </header>
     );
 }

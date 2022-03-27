@@ -1,3 +1,5 @@
+import Loading from '../Loading/Loading';
+
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
@@ -14,6 +16,12 @@ const Home = () =>{
 			setFilmes(resposta.data);
 		});
 	}, []);
+
+    if (filmes.length === 0) {
+        return (
+            <Loading />
+        );
+    }
 
     return(
         <>

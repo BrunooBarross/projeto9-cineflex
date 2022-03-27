@@ -1,5 +1,6 @@
 import SessaoDia from './SessaoDia';
 import Footer from '../Footer/Footer';
+import Loading from '../Loading/Loading';
 
 import axios from 'axios';
 import { useState, useEffect } from 'react';
@@ -21,12 +22,10 @@ const Sessoes = () =>{
 	}, [idFilme]);
 
     if (sessoes.length === 0) {
-        return(
-            <div className="sessoes-titulo">
-                <h1>Selecione o horário</h1>
-         </div>
-        );        
-    }
+        return (
+            <Loading />
+        );
+    }   
 
     return(
         <>

@@ -1,5 +1,6 @@
 import Footer from '../Footer/Footer';
 import Assento from './Assento';
+import Loading from '../Loading/Loading';
 
 import axios from "axios";
 import { useParams } from "react-router-dom";
@@ -19,18 +20,28 @@ const Assentos = ({ setSucesso }) => {
 
     function reservarAssento(event) {
         event.preventDefault(); // impede o redirecionamento
-
-        const requisicaoPost = axios.post("https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many", {
+        if (ids.identificador.length === 0){
+            alert('Prezado cliente escolha pelo menos um assento >.<');
+        }
+        if (ids.identificador.length !== 0) {
+            const requisicaoPost = axios.post("https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many", {
             ids: ids.identificador,
             name: nomeComprador,
             cpf: cpfComprador
         });
         requisicaoPost.then(resposta => {
-            setSucesso({ assentos: ids.numeracao, nomeFilme: assentos.movie.title, dataFilme: assentos.day.date,
-                horaFilme: assentos.name, nome: nomeComprador, cpf: cpfComprador });
+            setSucesso({ 
+                assentos: ids.numeracao, 
+                nomeFilme: assentos.movie.title, 
+                dataFilme: assentos.day.date,
+                horaFilme: assentos.name, 
+                nome: nomeComprador, 
+                cpf: cpfComprador });
             navigate("/sucesso");
         });
-        requisicaoPost.catch(resposta => { console.log("deu ruim"); });
+        requisicaoPost.catch(resposta => { console.log('Deu erro ai Dev, se vira irmão!')});
+            
+        }
     }
 
     useEffect(() => {
@@ -43,9 +54,7 @@ const Assentos = ({ setSucesso }) => {
 
     if (assentos.length === 0) {
         return (
-            <div>
-                <h1>Selecione o(s) assento(s)</h1>
-            </div>
+            <Loading />
         );
     }
 
@@ -86,10 +95,12 @@ const Assentos = ({ setSucesso }) => {
                     <input type="text" name="name" placeholder='Digite seu nome'
                         onChange={e => setNomeComprador(e.target.value)} required/>
                     <span>CPF do Comprador:</span>
-                    <input maxLength='11' minLength='11' name="" placeholder='Digite seu cpf'
+                    <input maxLength={11} pattern='[0-9]{11}' name="" placeholder='Digite seu cpf'
                         onChange={e => setCpfComprador(e.target.value)} required/>
                 </div>
-                <button type="submit" className='botao'>Reservar assento(s)</button>
+                <div className='botao-div'>
+                    <button type="submit" className='botao'>Reservar assento(s)</button>
+                </div>                
             </form>
 
             <Footer
