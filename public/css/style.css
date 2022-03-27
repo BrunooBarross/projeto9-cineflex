@@ -3,7 +3,7 @@
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif !important;
     font-style: normal !important;
-    font-weight: 400 !important;
+    font-weight: 400;
 }
 .root{
     width: 100vw;

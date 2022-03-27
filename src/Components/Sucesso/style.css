@@ -1,0 +1,57 @@
+.mensagem{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 110px;
+}
+.mensagem span{
+    width: 200px;
+    font-weight: 700 !important;
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+    letter-spacing: 0.04em;
+    color: #247A6B;
+}
+.sucesso-info{
+    display: flex;
+    flex-direction: column;
+    min-height: 110px;
+    margin-top: 16px;
+    padding-left: 28px;
+}
+.sucesso-info h2{
+    padding-top: 16px;
+    font-weight: 700 !important;
+    font-size: 24px;
+    line-height: 28px;
+    color: #293845;
+    letter-spacing: 0.04em;
+
+}
+.sucesso-info span{
+    font-size: 22px;
+    line-height: 28px;
+    letter-spacing: 0.04em;
+    color: #293845;
+}
+.botao-home{
+    display: flex;
+    justify-content: center;
+    padding-top: 62px;
+    text-decoration: none;
+}
+.botao-home button{
+    width: 225px;
+    height: 42px;
+    background: #E8833A;
+    border-radius: 3px;
+
+    font-size: 18px;
+    line-height: 21px;
+    letter-spacing: 0.04em;
+    color: #FFFFFF;
+    border: none;
+}

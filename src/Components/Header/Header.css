@@ -1,3 +1,8 @@
+@keyframes is-rotating{
+    to{
+        transform: rotate(1turn);
+    }
+}
 .header{
     display: flex;
     align-items: center;
@@ -15,4 +20,5 @@
 }
 .header img{
     width: 50px;
+    animation: is-rotating 6s 1 0.5s;
 }
