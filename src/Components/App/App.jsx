@@ -9,7 +9,7 @@ import Sucesso from "../Sucesso/Sucesso";
 
 
 export default function App(){
-    const [sucesso, setSucesso] = useState ({assentos:[],nome:"",cpf:""})
+    const [sucesso, setSucesso] = useState ({})
     return(
         <BrowserRouter>
             <Header />

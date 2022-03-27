@@ -26,7 +26,8 @@ const Assentos = ({ setSucesso }) => {
             cpf: cpfComprador
         });
         requisicaoPost.then(resposta => {
-            setSucesso({ assentos: ids.numeracao, nome: nomeComprador, cpf: cpfComprador });
+            setSucesso({ assentos: ids.numeracao, nomeFilme: assentos.movie.title, dataFilme: assentos.day.date,
+                horaFilme: assentos.name, nome: nomeComprador, cpf: cpfComprador });
             navigate("/sucesso");
         });
         requisicaoPost.catch(resposta => { console.log("deu ruim"); });
@@ -38,6 +39,7 @@ const Assentos = ({ setSucesso }) => {
             setAssentos(resposta.data);
         });
     }, [idSessao]);
+    
 
     if (assentos.length === 0) {
         return (
@@ -82,10 +84,10 @@ const Assentos = ({ setSucesso }) => {
                 <div className='input'>
                     <span>Nome do Comprador:</span>
                     <input type="text" name="name" placeholder='Digite seu nome'
-                        onChange={e => setNomeComprador(e.target.value)} />
+                        onChange={e => setNomeComprador(e.target.value)} required/>
                     <span>CPF do Comprador:</span>
-                    <input maxLength='14' minLength='11' name="" placeholder='Digite seu cpf'
-                        onChange={e => setCpfComprador(e.target.value)} />
+                    <input maxLength='11' minLength='11' name="" placeholder='Digite seu cpf'
+                        onChange={e => setCpfComprador(e.target.value)} required/>
                 </div>
                 <button type="submit" className='botao'>Reservar assento(s)</button>
             </form>
