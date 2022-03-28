@@ -10,7 +10,7 @@ export default function Assento(props) {
         }
 
         if (cor === 'selecionado') {
-            let dialog = window.confirm("Desfazer a seleção do assento: " + posicao);
+            let dialog = window.confirm("Desfazer a seleção do assento: " + posicao+ "?");
             if (dialog) {
                 setCor('livre');
                 const novosIds = props.ids.identificador.filter(item => item !== id);
