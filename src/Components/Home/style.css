@@ -37,10 +37,13 @@
     width: 129px;
     height: 193px;
 }
-@media (max-width: 390px)  {
+
+@media (max-width: 778px)  {
     .container-filme{
         justify-content: center;
     }
+}
+@media (max-width: 390px)  {
     .home-filme{
         margin-left: 10px;
         margin-right: 10px;
