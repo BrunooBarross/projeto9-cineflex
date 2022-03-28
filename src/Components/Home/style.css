@@ -36,5 +36,13 @@
 .home-filme-img{
     width: 129px;
     height: 193px;
-
+}
+@media (max-width: 390px)  {
+    .container-filme{
+        justify-content: center;
+    }
+    .home-filme{
+        margin-left: 10px;
+        margin-right: 10px;
+    }
 }
