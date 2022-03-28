@@ -6,9 +6,13 @@ import { Link } from "react-router-dom";
 
 import "./style.css"
 
-const Home = () =>{
+const Home = ({setBotaoH}) =>{
 
     const [filmes, setFilmes] = useState([]);
+    
+    useEffect(_=>{
+        setBotaoH(false);
+    }, [setBotaoH]);
 
     useEffect(() => {
 		const requisicao = axios.get("https://mock-api.driven.com.br/api/v5/cineflex/movies");
@@ -16,7 +20,7 @@ const Home = () =>{
 			setFilmes(resposta.data);
 		});
 	}, []);
-
+    
     if (filmes.length === 0) {
         return (
             <Loading />

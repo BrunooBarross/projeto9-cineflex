@@ -5,8 +5,7 @@
     height: 117px;
     display: flex;
     align-items: center;
-    background: #DFE6ED;
-    border: 1px solid #9EADBA;
+    backdrop-filter: blur(2px) brightness(35%);
 }
 .footer-poster{
     width: 64px;
@@ -26,4 +25,5 @@
 .footer-info{    
     margin-left: 14px;
     line-height: 30px;
+    color: #FFFFFF;
 }

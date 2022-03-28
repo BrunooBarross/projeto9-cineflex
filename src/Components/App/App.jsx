@@ -9,15 +9,16 @@ import Sucesso from "../Sucesso/Sucesso";
 
 
 export default function App(){
+    const [botaoH, setBotaoH] = useState (false);
     const [sucesso, setSucesso] = useState ({})
     return(
         <BrowserRouter>
-            <Header />
+            <Header botaoH={botaoH}/>
             <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/filme/:idFilme" element={<Sessoes />} />  
-                <Route path="/sessao/:idSessao" element={<Assentos setSucesso={setSucesso}/>} /> 
-                <Route path="/sucesso" element={<Sucesso sucesso={sucesso}/>} />               
+                <Route path="/" element={<Home botaoH={botaoH} setBotaoH={setBotaoH}/>} />
+                <Route path="/filme/:idFilme" element={<Sessoes setBotaoH={setBotaoH}/>} />  
+                <Route path="/sessao/:idSessao" element={<Assentos setSucesso={setSucesso} setBotaoH={setBotaoH}/>} /> 
+                <Route path="/sucesso" element={<Sucesso sucesso={sucesso} setBotaoH={setBotaoH}/>} />               
             </Routes>            
         </BrowserRouter>       
     );    

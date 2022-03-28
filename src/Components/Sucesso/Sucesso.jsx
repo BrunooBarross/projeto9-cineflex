@@ -1,10 +1,19 @@
 import { Link } from "react-router-dom";
+import { useEffect } from 'react';
+
 import "./style.css"
+
 const Sucesso = (props) => {
+    const {setBotaoH} = props; 
+    useEffect(_=>{
+        setBotaoH(false);
+    }, [setBotaoH]);
+
     const {assentos, nomeFilme, dataFilme, horaFilme, nome, cpf} = props.sucesso;
     assentos.sort((a, b) => a-b);
     const formatCpf = cpf.substr(0, 3)+'.'+cpf.substr(3, 3)+'.'+cpf.substr(6, 3)+'-'
          +cpf.substr(9, 2);
+
     return(
         <section className="container-sucesso">  
             <div className="mensagem">
@@ -19,7 +28,7 @@ const Sucesso = (props) => {
             <div className="sucesso-info">
                 <h2>Ingressos</h2>
                 {assentos.map((assento, key) =>(
-                    <span>Assento: {assento}</span>)
+                    <span key={key}>Assento: {assento}</span>)
                 )}  
             </div>
             <div className="sucesso-info">

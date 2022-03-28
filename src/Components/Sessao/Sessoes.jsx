@@ -10,10 +10,14 @@ import "./style.css"
 
 
 
-const Sessoes = () =>{
+const Sessoes = ({setBotaoH}) =>{
     const { idFilme } = useParams();
     const [sessoes, setSessoes] = useState([]);
-
+    
+    useEffect(_=>{
+        setBotaoH(true);
+    }, [setBotaoH]);
+    
     useEffect(() => {
 		const requisicao = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/movies/${idFilme}/showtimes`);
 		requisicao.then(resposta => {

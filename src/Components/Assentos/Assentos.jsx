@@ -9,7 +9,12 @@ import { useNavigate } from 'react-router-dom';
 
 import "./style.css"
 
-const Assentos = ({ setSucesso }) => {
+const Assentos = ({ setSucesso, setBotaoH }) => {
+    
+    useEffect(_=>{
+        setBotaoH(true);
+    }, [setBotaoH]);
+
     const { idSessao } = useParams();
     const [assentos, setAssentos] = useState([]);
     const [ids, setIds] = useState({ identificador: [], numeracao: [] });
@@ -17,7 +22,7 @@ const Assentos = ({ setSucesso }) => {
     const [cpfComprador, setCpfComprador] = useState("");
 
     const navigate = useNavigate();
-
+    
     function reservarAssento(event) {
         event.preventDefault(); // impede o redirecionamento
         if (ids.identificador.length === 0){
